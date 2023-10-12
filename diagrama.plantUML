@@ -1,0 +1,63 @@
+@startuml diagrama
+
+class Semaforo{
+    numTombamento: String
+    vermelhoTimer: int
+    verdeTimer: int
+    amareloTimer: int
+    estado: Estado
+
+    String getNumTombamento()
+    void setNumTombamento()
+    Estado getEstadoAtual()
+    void setEstadoAtual()
+    void exibir()
+    void efetuarTransicao()
+    void showVisorRegressivo()
+    void start()
+    String toString()
+    int getVermelhoTimer()
+    void setVermelhoTimer()
+    int getAmareloTimer()
+    void setAmareloTimer()
+    int getVerdeTimer()
+    void setVerdeTimer()
+
+}
+
+interface Estado{
+    int getTimer()
+    void proximoEstado()
+    String toString()
+}
+
+class Amarelo{
+    semaforo : Semaforo
+    int getTimer()
+    void proximoEstado()
+    String toString()
+}
+
+class Verde{
+    semaforo : Semaforo
+    int getTimer()
+    void proximoEstado()
+    String toString()
+}
+
+class Vermelho{
+    semaforo : Semaforo
+    int getTimer()
+    void proximoEstado()
+    String toString()
+}
+
+Amarelo ..|> Estado
+Verde ..|> Estado
+Vermelho ..|> Estado
+Semaforo o-- Estado
+
+
+
+
+@enduml
