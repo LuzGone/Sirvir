@@ -5,8 +5,8 @@ public class Amarelo implements Estado {
         this.semaforo = semaforo;
     }
 
-    public int iniciarTimer(){
-        return 1;
+    public int getTimer(){
+        return this.semaforo.getAmareloTimer();
     }
 
     public void proximoEstado(){
@@ -14,6 +14,6 @@ public class Amarelo implements Estado {
     }
 
     public String toString(){
-        return "Amarelo" + " : " + iniciarTimer() + " segundos\n";
+        return "Amarelo" + " : " + getTimer() + " segundos\n";
     }
 }

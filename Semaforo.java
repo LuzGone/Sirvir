@@ -4,6 +4,10 @@ public class Semaforo {
 	
 	private String numTombamento = null;
 
+	private int vermelhoTimer = 3;
+	private int verdeTimer = 5;
+	private int amareloTimer = 1;
+
 	private Estado estado = new Vermelho(this);
 	
 	public Semaforo(String numTombamento) {
@@ -38,7 +42,7 @@ public class Semaforo {
 	}
 	
 	public void showVisorRegressivo() {
-		for (int i = this.estado.iniciarTimer(); i >0 ; i--) {
+		for (int i = this.estado.getTimer(); i >0 ; i--) {
 			System.out.println(i + " segundo(s)");
 			try {
 				// 1000 milisegundos equivale a 1 segundo
@@ -57,9 +61,9 @@ public class Semaforo {
 	public void start(int time_in_seconds) {
 		while(time_in_seconds > 0) {
 			System.out.println("Tempo restante da simulacao: " + time_in_seconds + " segundos");
-			System.out.println( getEstadoAtual() + " : " + this.estado.iniciarTimer() + " segundos.");
+			System.out.println( getEstadoAtual() + " : " + this.estado.getTimer() + " segundos.");
 			exibir();
-			time_in_seconds -= this.estado.iniciarTimer();
+			time_in_seconds -= this.estado.getTimer();
 			showVisorRegressivo();
 			efetuarTransicao();
 			System.out.println();
@@ -71,10 +75,34 @@ public class Semaforo {
 		String s = "";
 		s += "Numero Tombamento: " + numTombamento + "\n";
 		s += "Tempo de permanencia em cada estagio:\n";
-		s += "Vermelho: "+ "";
-		s += "Verde: " + "";
-		s += "Amarelo: " + "";
+		s += "Vermelho: "+ this.verdeTimer + " segundos\n";
+		s += "Verde: " + this.verdeTimer + " segundos\n";
+		s += "Amarelo: " + this.amareloTimer + " segundos\n";
 		return s;
+	}
+
+	public void setVermelhoTimer(int newTimer){
+		this.vermelhoTimer = newTimer; 
+	}
+
+	public int getVermelhoTimer(){
+		return this.vermelhoTimer;
+	}
+
+	public void setVerdeTimer(int newTimer){
+		this.verdeTimer = newTimer; 
+	}
+
+	public int getVerdeTimer(){
+		return this.verdeTimer;
+	}
+
+	public void setAmareloTimer(int newTimer){
+		this.amareloTimer = newTimer; 
+	}
+
+	public int getAmareloTimer(){
+		return this.amareloTimer;
 	}
 	
 
